@@ -1,62 +1,63 @@
 let table;
-// let xPosAxis1;
-const xPosAxis2 = 400;
-const xPosAxis1 = 20;
 
 function preload() {
-  table = loadTable("future_cities_data_truncated.csv", "csv", "header");
+  table = loadTable("future_cities_data_truncated_2.csv", "csv", "header");
 }
 function setup() {
   createCanvas(400, 400);
-  background(100);
+  noStroke();
 
-  print(table.getRowCount() + " total rows in table");
-  print(table.getColumnCount() + " total columns in table");
-  print("All precipitation:", table.getColumn("Annual_Precipitation"));
+  // print(table.getRowCount() + " total rows in table");
+  // print(table.getColumnCount() + " total columns in table");
+  // print("All precipitation:", table.getColumn("Annual_Precipitation"));
+  // print("future Annual Precipitation", table.getColumn("future_Annual_Precipitation"));
 
-  const barMargain = 10;
-  const barHeight = 30;
+  // const barMargain = 10;
+  // const barHeight = 30;
 
-  for (i = 1; i < table.getRowCount(); i++) {
+  // for (let i = 0; i < table.getRowCount(); i++) {
+  //   // const city = table.get(i, "current_city");
+  //   const annualPrecipitation = table.get(i, "Annual_Precipitation");
+  //   const futureAnnualPrecipitation = table.get(i, "future_Annual_Precipitation");
+
+  //   fill(0,0,255,50);
+  //   rect(40, height/2+i*mouseY,annualPrecipitation/3,40);
+  //   fill(0,0,255,20);
+  //   rect(20, height/2+i*20,futureAnnualPrecipitation/3,40);
+
+  //   console.log(annualPrecipitation);
+  //   console.log(futureAnnualPrecipitation);
+  //   console.log(i);
+}
+
+console.log(table);
+
+//rect(width/2, height/2,annualPrecipitation,10);
+
+console.log("out of loop");
+// rectMode(CENTER);
+
+function draw() {
+  background(255);
+  for (let i = 0; i < table.getRowCount(); i++) {
     const city = table.get(i, "current_city");
     const annualPrecipitation = table.get(i, "Annual_Precipitation");
-    const futureAnnualPrecipitation = table.get(i, "future_Annual_Precipitation");
+    const futureAnnualPrecipitation = table.get(
+      i,
+      "future_Annual_Precipitation"
+    );
+    fill(100);
+    textSize(40);
+    text(city, 40, i*90);
+    fill(0, 0, 255, 50);
+    rect(40, 40 + i * 72, annualPrecipitation / 3, 40);
+    fill(0, 0, 255, 20);
+    rect(40, 60 + i * 72, futureAnnualPrecipitation / 3, 40);
 
-    const yPosition = convertPrecipitationtoPosition(annualPrecipitation);
-    const xPosition = xPosAxis1;
-
-    const futureYPosition = convertPrecipitationtoPosition(futureAnnualPrecipitation);
-    const futureXPosition = xPosAxis2;
-
-    drawLines(yPosition, annualPrecipitation);
-    console.log(xPosAxis1);
-
-    // line(10,map(table.get(i, 10), 0, 25, 800, 0),790,
-    //   map(table.get(i, 10), 10, 25, 400, 400));
+    console.log(annualPrecipitation);
+    console.log(futureAnnualPrecipitation);
+    console.log(city);
+    console.log(i);
+    console.log(mouseY);
   }
 }
-
-function convertPrecipitationtoPosition(annualPrecipitation) {
-  const position = map(annualPrecipitation, 416, 994, 400, 0);
-  console.log("annualperciptation: ", annualPrecipitation, " position: ", position);
-  return position;
-}
-
-function drawLines(y1, y2) {
-  line(xPosAxis1, y1, xPosAxis2, y2);
-}
-
-// console.log(table);
-// print(table.getColummn("selfdissim_current_future"));
-
-// function draw() {
-//   // background(100);
-//   for (i = 1; i < 30; i++) {
-//     line(
-//       10,
-//       map(table.get(i, 10), 0, 25, 800, 0),
-//       790,
-//       map(table.get(i, 10), 10, 25, 400, 400)
-//     );
-//   }
-// }
