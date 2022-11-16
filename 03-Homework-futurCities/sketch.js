@@ -49,7 +49,6 @@ function draw() {
     textSize(30);
     text(city,xPos+10,(i+1)* stepY+100);
     pop();
-    // console.log(mouseY);
 
     imageMode(CENTER);
     image(mySvg, 300, (i + 1) * 151, 35, 52);
