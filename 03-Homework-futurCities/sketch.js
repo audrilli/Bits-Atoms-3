@@ -1,7 +1,6 @@
 let table;
 var mySvg;
 let drops = [];
-let speed;
 
 
 
@@ -13,7 +12,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   noStroke();
   for (let i = 0; i < 50; i++) {
-    drops.push(new Rain(width/2, -1000, speed));
+    drops.push(new Rain(width/2, -1000, 3));
   }
 
   
@@ -72,7 +71,6 @@ function draw() {
       // passing the two texts into the drawing function
       const labelXPos = 332;
       const labelYPos = (i + 1) * 151;
-      speed = speed + 4;
 
       //function to draw the label
       drawLabel(
@@ -85,7 +83,7 @@ function draw() {
     
   }
   
-  // descriprion of the graph
+
   fill(0,0,255);
   textSize(20);
   text("Annual Precipitation", 80, 147, 200, 100);

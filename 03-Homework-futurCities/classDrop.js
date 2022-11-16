@@ -13,7 +13,8 @@
    }
    show(){
       for(let i=0;i<=100;i++){
-       this.y = random(0,height);
+      //  this.x = random(0,windowWidth);
+      //    this.y = random(0,height);
       push();
       stroke(0,0,255);
       line(this.x,this.y,this.x,this.y+10)
