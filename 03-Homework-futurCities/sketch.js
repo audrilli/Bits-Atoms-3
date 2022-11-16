@@ -1,6 +1,7 @@
 let table;
 var mySvg;
 let drops = [];
+let speed;
 
 
 
@@ -71,6 +72,7 @@ function draw() {
       // passing the two texts into the drawing function
       const labelXPos = 332;
       const labelYPos = (i + 1) * 151;
+      speed = speed + 4;
 
       //function to draw the label
       drawLabel(
