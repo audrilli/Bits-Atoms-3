@@ -1,22 +1,34 @@
 let table;
 var mySvg;
-// let drop;
+let drops = [];
+let speed;
+
 
 
 function preload() {
   table = loadTable("future_cities_data_truncated_2.csv", "csv", "header");
   mySvg = loadImage("asset1.svg");
-  // drop = new drop(45, 789, 3);
-  // drop.fall();
 }
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight);
   noStroke();
+  for (let i = 0; i < 50; i++) {
+    drops.push(new Rain(width/2, -1000, speed));
+  }
+
+  
+ 
 }
 
 function draw() {
-  
-  background(255);
+  background(235,235,254);
+
+  for (let i = 0; i < drops.length; i++) {
+    let drop = drops[i];
+    drop.show();
+    drop.fall();
+  }
+
   for (let i = 0; i < table.getRowCount(); i++) {
     const city = table.get(i, "current_city");
     const annualPrecipitation = table.get(i, "Annual_Precipitation");
@@ -32,6 +44,12 @@ function draw() {
     fill(0,0,255,50);
     rect(xPos, startingYPos + (i + 1) * stepY, rectWidth, rectHeight); 
     rect(xPos, startingYPos + (i + 1) * stepY +10, rectWidth2, rectHeight); 
+    push();
+    fill(0,0,255);
+    textSize(30);
+    text(city,xPos+10,(i+1)* stepY+100);
+    pop();
+    // console.log(mouseY);
 
     imageMode(CENTER);
     image(mySvg, 300, (i + 1) * 151, 35, 52);
@@ -54,6 +72,7 @@ function draw() {
       // passing the two texts into the drawing function
       const labelXPos = 332;
       const labelYPos = (i + 1) * 151;
+      speed = speed + 4;
 
       //function to draw the label
       drawLabel(
@@ -66,8 +85,8 @@ function draw() {
     
   }
   
-
-  fill(100);
+  // descriprion of the graph
+  fill(0,0,255);
   textSize(20);
   text("Annual Precipitation", 80, 147, 200, 100);
   text("Future Annual Precipitation", 80, 742, 300, 100);
@@ -77,7 +96,7 @@ function isMouseOverRectangel(boundries){
   if(mouseX >= boundries.minX &&
     mouseX <= boundries.maxX &&
     mouseY >= boundries.minY && 
-    mouseY <= boundries.maxX
+    mouseY <= boundries.maxY
     ){
       return true;
     }else{
@@ -87,9 +106,10 @@ function isMouseOverRectangel(boundries){
 
 function drawLabel(precipitation,futurePrecipitation,x,y){
   const textBoxSize =200;
+  let textcolor = fill(0,0,255);
+  textcolor;
   text(precipitation,x,y,textBoxSize,textBoxSize);
   text(precipitation,x,y+25,textBoxSize,textBoxSize);
 }
-console.log("outofloop");
-console.log(boundries.minX);
+console.log("code end");
     
