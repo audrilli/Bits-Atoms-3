@@ -27,7 +27,10 @@ function draw() {
   for (let i = 0; i < table.getRowCount(); i++) {
     const city = table.get(i, "current_city");
     const annualPrecipitation = table.get(i, "Annual_Precipitation");
-    const futureAnnualPrecipitation = table.get(i,"future_Annual_Precipitation");
+    const futureAnnualPrecipitation = table.get(
+      i,
+      "future_Annual_Precipitation"
+    );
 
     const xPos = 80;
     const startingYPos = 40;
